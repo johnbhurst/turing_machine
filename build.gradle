@@ -1,0 +1,25 @@
+// John Hurst (john.b.hurst@gmail.com)
+// Copyright 2016 John Hurst
+// 2016-05-05
+
+apply plugin: "java"
+apply plugin: "groovy"
+apply plugin: "application"
+
+mainClassName = "nz.co.skepticalhumorist.turing.Main"
+
+wrapper {
+  gradleVersion = "2.13"
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile "org.slf4j:slf4j-api:1.7.21"
+  compile "io.javaslang:javaslang:2.0.2"
+
+  testCompile "junit:junit:4.12"
+  testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+}
