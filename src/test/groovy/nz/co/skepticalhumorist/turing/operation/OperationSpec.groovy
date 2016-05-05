@@ -45,13 +45,14 @@ class OperationSpec extends Specification {
     "1,(1),1" || "(1),1,1"
   }
 
-  def "Right moves position right"() {
+  def "Right moves position right, lengthening tape if necessary"() {
     expect: "Operation moves the position right without changing the content of the tape"
     operation(R, original) == result
 
     where: "Original and result tapes are"
     original  || result
     "1,(1),1" || "1,1,(1)"
+    "()"      || ",()"
   }
 
 }
