@@ -7,5 +7,11 @@ package nz.co.skepticalhumorist.turing.operation;
 import nz.co.skepticalhumorist.turing.Tape;
 
 public interface Operation {
+  public static final Operation R = new Right();
+  public static final Operation L = new Left();
+  public static final Operation E = new Erase();
+  public static final Operation P0 = new Print("0");
+  public static final Operation P1 = new Print("1");
+
   Tape executeOn(Tape tape);
 }
