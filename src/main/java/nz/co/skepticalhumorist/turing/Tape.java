@@ -10,14 +10,15 @@ import javaslang.collection.List;
 public class Tape {
 
   private int position;
-  private List<String> contents;
+  private List<String> contents = List.empty();
 
   public Tape(int position, String... contents) {
-    this.position = position;
-    this.contents = List.of(contents);
+    this(position, List.of(contents));
   }
 
   public Tape(int position, List<String> contents) {
+    assert position >= 0;
+    assert position < contents.length();
     this.position = position;
     this.contents = contents;
   }
@@ -45,6 +46,10 @@ public class Tape {
 
   public List<String> getContents() {
     return contents;
+  }
+
+  public String getCurrentSymbol() {
+    return contents.get(position);
   }
 
   @Override
