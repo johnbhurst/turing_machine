@@ -10,33 +10,31 @@ import nz.co.skepticalhumorist.turing.operation.Operation;
 
 public class Rule {
 
-  private List<String> currentStates;
+  private List<State> currentStates;
   private String currentSymbol;
   private List<Operation> operations;
-  private String nextState;
+  private State nextState;
 
-  Rule(List<String> currentStates, String currentSymbol, List<Operation> operations, String nextState) {
+  Rule(List<State> currentStates, String currentSymbol, List<Operation> operations, State nextState) {
     this.currentStates = currentStates;
     this.currentSymbol = currentSymbol;
     this.operations = operations;
     this.nextState = nextState;
   }
 
-  public boolean matches(Tuple2<Tape, String> current) {
-    Tape currentTape = current._1();
-    String currentState = current._2();
-    return currentStates.contains(currentState) &&
-      currentTape.getCurrentSymbol().equals(currentSymbol);
+  public boolean matches(MachineState machineState) {
+    return currentStates.contains(machineState.getState()) &&
+      machineState.getTape().getCurrentSymbol().equals(currentSymbol);
   }
 
   private static Tape applyOp(Tape tape, Operation op) {
     return op.executeOn(tape);
   }
 
-  public Tuple2<Tape, String> executeOn(Tuple2<Tape, String> current) {
-    Tape currentTape = current._1();
+  public MachineState executeOn(MachineState machineState) {
+    Tape currentTape = machineState.getTape();
     Tape resultTape = operations.foldLeft(currentTape, Rule::applyOp);
-    return new Tuple2<>(resultTape, nextState);
+    return new MachineState(resultTape, nextState);
   }
 
 }
