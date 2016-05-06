@@ -6,6 +6,8 @@ package nz.co.skepticalhumorist.turing;
 
 public class MachineState {
 
+  public static final MachineState BEGIN_MACHINE = new MachineState(new Tape(0, ""), State.BEGIN);
+
   private Tape tape;
   private State state;
 
