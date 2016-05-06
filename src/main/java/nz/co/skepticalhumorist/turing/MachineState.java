@@ -4,6 +4,8 @@
 
 package nz.co.skepticalhumorist.turing;
 
+import java.util.Objects;
+
 public class MachineState {
 
   public static final MachineState BEGIN_MACHINE = new MachineState(new Tape(0, ""), State.BEGIN);
@@ -24,4 +26,17 @@ public class MachineState {
     return state;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    MachineState that = (MachineState) obj;
+    return Objects.equals(tape, that.tape) &&
+      Objects.equals(state, that.state);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(tape, state);
+  }
 }
