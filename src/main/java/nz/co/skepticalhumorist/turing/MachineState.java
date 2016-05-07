@@ -39,4 +39,9 @@ public class MachineState {
   public int hashCode() {
     return Objects.hash(tape, state);
   }
+
+  @Override
+  public String toString() {
+    return state + ":" + tape;
+  }
 }
