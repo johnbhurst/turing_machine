@@ -5,19 +5,21 @@
 package nz.co.skepticalhumorist.turing;
 
 import javaslang.collection.List;
-import javaslang.control.Try;
 import nz.co.skepticalhumorist.turing.operation.Operation;
 import nz.co.skepticalhumorist.turing.operation.Print;
 
 import java.io.IOException;
 import java.nio.file.Path;
+//import java.util.function.Predicate;
 
 import static java.nio.file.Files.readAllLines;
 
 public class MachineReader {
 
   private static List<State> parseStates(String s) {
+//    Predicate<String> notEmpty = (s1 -> s1.isEmpty()).negate();
     return List.of(s.split(","))
+      .filter(item -> !item.isEmpty())
       .map(State::new);
   }
 
