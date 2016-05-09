@@ -1,0 +1,4 @@
+BEGIN::P0,R:c
+c::R:e
+e::P1,R:f
+f::R:BEGIN
