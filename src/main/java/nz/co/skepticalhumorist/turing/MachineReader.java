@@ -22,6 +22,7 @@ public class MachineReader {
   }
 
   private static Operation parseOperation(String s) {
+    if (s.equals("")) return Operation.N;
     if (s.equals("E")) return Operation.E;
     if (s.equals("L")) return Operation.L;
     if (s.equals("R")) return Operation.R;

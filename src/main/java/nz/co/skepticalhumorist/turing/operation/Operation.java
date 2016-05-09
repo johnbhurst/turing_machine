@@ -12,6 +12,7 @@ public interface Operation {
   public static final Operation E = new Erase();
   public static final Operation P0 = new Print("0");
   public static final Operation P1 = new Print("1");
+  public static final Operation N = new NoOp();
 
   Tape executeOn(Tape tape);
 }
